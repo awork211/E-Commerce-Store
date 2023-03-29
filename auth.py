@@ -12,21 +12,22 @@ def signup():
         user_email = request.form['email']
         first_name = request.form['firstName']
         password = request.form['password']
-        # check confirm password
 
-
+        # query for user data
         if db.session.query(User).filter(User.email == user_email).count() != 0:
             flash('An account exists with this email.', category='error')
         else:
             new_user = User(email = user_email, password = generate_password_hash(password, method='sha256'),
             first_name = first_name)
-
+            
             db.session.add(new_user)
             db.session.commit()
 
+            user = User.query.filter_by(email=user_email).first()
+            login_user(user, remember=True)
             flash('Account created!', category='success')
             return redirect(url_for('views.home'))
-    return render_template('signup.html')
+    return render_template('signup.html', user = current_user)
 
 @auth.route("login", methods=['GET', 'POST'])
 def login():
@@ -38,11 +39,17 @@ def login():
         
         if user:
             if check_password_hash(user.password, password):
-                login_user(user, remember=True)
                 flash("Logged in successfully!", category="success")
+                login_user(user, remember=True)
                 return redirect(url_for("views.home"))
             else:
                 flash("Incorrect password, please try again.", category="error")
         else:
             flash("Email does not exist.", 'error')
-    return render_template('login.html')
+    return render_template('login.html', user = current_user)
+
+@auth.route("logout", methods=['GET', 'POST'])
+@login_required
+def logout():
+    logout_user()
+    return redirect(url_for('auth.login'))
