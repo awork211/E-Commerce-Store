@@ -20,3 +20,4 @@ class Inventory(db.Model):
     description = db.Column(db.String(300))
     price = db.Column(db.Float)
     category = db.Column(db.String(50))
+    item_name = db.Column(db.String(50))
