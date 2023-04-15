@@ -1,0 +1,27 @@
+{% extends '/partials/nav.html' %}
+{% block title %} Products {% endblock %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        {% for product in products %}
+        <div class="col-lg-3 col-md-6 col-sm-12 margin-top-25 mb-3">
+            <div class="card h-100 border-0 rounded-0">
+                <div id="img-container">
+                    <img id="card-img" src="/static/images/products/{{ product.image_src }}" class="card-img-top img-fluid" alt="{{ product.category }}">
+                    <a id="img-link" href="/products/{{ product.category }}/{{ product.item_id }}">
+                        <div class="middle">
+                            <div class="text">View item</div>
+                        </div>
+                    </a>
+                </div>
+                <div id="flex-card-body" class="card-body p-0 mt-2">
+                  <h5 class="card-title text-left">{{ product.item_name }} {{ tag[product.category] }}</h5>
+                  <p class="card-text">${{ product.price }}</p>
+                  <button id="add-btn" class="btn btn-block text-black rounded-0 w-100">ADD TO CART</button>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
