@@ -20,6 +20,7 @@ def create_app():
 
     login_manager = LoginManager()
     login_manager.init_app(app)
+    login_manager.login_message = 'Please try logging in.'
     login_manager.login_view = 'auth.login'
 
     # load user id into login_manager
