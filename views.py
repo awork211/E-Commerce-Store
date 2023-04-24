@@ -3,7 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import and_
 from flask import Blueprint
 from flask_login import current_user, login_required
-from .models import User, Inventory
+from .models import User, Inventory, Orders, Order_Items, Payments
 from . import db
 
 views = Blueprint('views', __name__, url_prefix='/')
@@ -16,6 +16,7 @@ def home():
 @views.route('products/<category>')
 def products(category):
     list_products = Inventory.query.filter_by(category=category)
+    print(list_products)
     return render_template('products.html', products = list_products, user = current_user, tag = item_nametag)
     
 
@@ -107,17 +108,73 @@ def delete(item_id):
     session.modified = True
     return redirect(request.referrer)
 
+@views.route('order_payment', methods=['POST'])
+def order_payment():
+    # Payment data
+    customer_name = request.form['first_name'] + ' ' + request.form['last_name']
+    email = request.form['email']
+    address1 = request.form['address1']
+    address2 = request.form['address2']
+    country = request.form['country']
+    state = request.form['state']
+    zip_code = request.form['zip_code']
+    name_on_card = request.form['name_on_card']
+    card_numbers = request.form['card_numbers']
+    expiration = request.form['expiration']
+    cvv = request.form['cvv']
+
+    # Order
+    user_id = current_user.id
+    order_total_quantity = session['cart_total_quantity']
+    order_total_price = session['cart_total_price']
+
+    new_order = Orders(user_id = user_id, total_quantity = order_total_quantity, total_price = order_total_price)
+
+    db.session.add(new_order)
+    db.session.commit()
+
+    # Order Items
+    last_order = Orders.query.filter_by(user_id=user_id).order_by(Orders.date.desc()).first()
+    last_order_id = last_order = last_order.order_id
+    for key, value in session['cart_item'].items():
+        item_id = int(key)
+        item_price = value['total_price']
+        item_quantity = value['quantity']
+        order_items = Order_Items(item_id = item_id, order_id = last_order_id, item_quantity = item_quantity, item_total_price = item_price)
+
+        db.session.add(order_items)
+        db.session.commit()
+
+
+    # Payment
+    payment_info = Payments(
+        user_id = user_id,
+        order_id = last_order_id,
+        name = customer_name,
+        email = email,
+        address_one = address1,
+        address_two = address2,
+        country = country,
+        state = state,
+        zip_code = zip_code,
+        name_on_card = name_on_card,
+        card_numbers = card_numbers,
+        expiration = expiration,
+        cvv = cvv
+    )
+    db.session.add(payment_info)
+    db.session.commit()
+
+    return redirect(url_for('views.order_complete'))
+
 @views.route('order_success', methods=['GET', 'POST'])
 def order_complete():
-    # create order table, and order_items in models
-    # enter in order in db, order_items in db
-    # clear session/cart
-    # return a thank you template
-    return 'Thank you for your order!'
+    session.clear()
+    return render_template('order_success.html', user = current_user)
 
 
 item_nametag = {
     "candles":  '- Soy Candle',
     "diffusers": 'Reed Diffuser',
-    "soaps": 'Hand & Body Soap'
+    "soaps": 'Soap Variety'
 }
