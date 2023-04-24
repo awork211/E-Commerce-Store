@@ -11,7 +11,7 @@ def create_app():
 
     from .views import views
     from .auth import auth
-    from .models import User, Inventory
+    from .models import User
 
     with app.app_context():
         app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://aaronwork:gamecube@localhost/postgres'
