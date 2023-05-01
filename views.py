@@ -1,9 +1,8 @@
-from flask import Flask, render_template, request, url_for, redirect, session
-from flask_sqlalchemy import SQLAlchemy
+from flask import render_template, request, url_for, redirect, session
 from sqlalchemy import and_
 from flask import Blueprint
 from flask_login import current_user, login_required
-from .models import User, Inventory, Orders, Order_Items, Payments
+from .models import Inventory, Orders, Order_Items, Payments
 from . import db
 
 views = Blueprint('views', __name__, url_prefix='/')
@@ -17,7 +16,7 @@ def home():
 def products(category):
     list_products = Inventory.query.filter_by(category=category)
     print(list_products)
-    return render_template('products.html', products = list_products, user = current_user, tag = item_nametag)
+    return render_template('products.html', products = list_products, user = current_user, tag = item_nametag, category = category)
     
 
 
@@ -27,7 +26,6 @@ def product_item(category, item_id):
 
     # get related products excluding current
     related_products = Inventory.query.filter(and_(Inventory.category == category, Inventory.item_id != item_id)).limit(4).all()
-
     return render_template('item.html',user = current_user, item = get_item, tag = item_nametag, related_products = related_products)
 
 @views.route('cart')
@@ -144,7 +142,6 @@ def order_payment():
 
         db.session.add(order_items)
         db.session.commit()
-
 
     # Payment
     payment_info = Payments(

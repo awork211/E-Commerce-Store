@@ -1,8 +1,8 @@
 {% extends '/partials/nav.html' %}
 {% block title %}Sign Up{% endblock %}
 {% block content %}
-<div class="row justify-content-center">
-    <form action="{{url_for('auth.signup')}}" method="POST" class="needs-validation w-25 p-3 sign-up-form" novalidate>
+<div class="row justify-content-center sign-up-form">
+    <form action="{{url_for('auth.signup')}}" method="POST" class="needs-validation w-25" novalidate>
         <h3 align="center">Sign Up</h3>
         <div class="form-group">
             <label class="pt-2" for="email">Email Address</label>
@@ -28,7 +28,7 @@
             placeholder="Enter first name"
             required
             />
-            <div id="invalid-confirm" class="invalid-feedback">
+            <div id="invalid-feedback" class="invalid-feedback">
                 Please enter first name.
             </div>
         </div>

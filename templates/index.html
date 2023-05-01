@@ -5,47 +5,47 @@
 {% endblock %}
 {% block content %}
 <div class="jumbotron jumbotron-fluid .img-fluid">
-    <container id="hero" class="container-fluid hero-text text-left">
-        <div class="hero-text mt-4">
-            <h1 class="display-3 ms-4">Candle co.</h1>
-            <p class="ms-4">The most organic ingredients you ever experienced.</p>
-            <p class="ms-4">Handmade, Handpoured, Handstirred</p>
-            <p class="hero-btn ms-4">
-                <a class="btn btn-lg" href="#collection" role="button">Shop our collections</a>
-            </p>
-        </div>
-    </container>
+  <container id="hero" class="container-fluid hero-text text-left">
+    <div class="hero-text mt-4">
+      <h1 class="display-3 ms-4">Luminaire Candles</h1>
+      <p class="ms-4">Elevate your senses with our all-natural candles</p>
+      <p class="ms-4">Handmade, Organic and Non-Toxic</p>
+      <p class="hero-btn ms-4">
+        <a class="btn btn-lg" href="#collection" role="button">Shop our collections</a>
+      </p>
+    </div>
+  </container>
 </div>
 <div id="collection" class="container-fluid text-center">
     <h1>Latest Collections</h1>
 </div>
-<div class="collage w-75 m-auto">
-    <div class="row">
-      <div class="col-lg-6">
-        <img
-            src="/static/images/collage/diffuser_collage.jpg"
-            alt="Table Full of Spices"
-            class="w-100 mb-2 mb-md-4 shadow-1-strong rounded img-fluid"
-        />
-        <img
-          src="/static/images/collage/soaps_collage.jpg"
-          alt="Coconut with Strawberries"
-          class="w-100 shadow-1-strong rounded"
-        />
-      </div>
-      <div class="col-lg-6">
-        <img
-          src="/static/images/collage/candle_collage.jpg"
-          data-mdb-img="https://mdbcdn.b-cdn.net/img/Photos/Vertical/1.webp"
-          alt="Dark Roast Iced Coffee"
-          class="w-100 shadow-1-strong rounded"
-        />
-        <img
-          src="/static/images/collage/incense_collage.jpg"
-          alt="Table Full of Spices"
-          class="w-100 mt-4 md-4 shadow-1-strong rounded"
-        />
-      </div>
+<div class="container">
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+    <div class="col">
+      <a href="/products/candles" class="collection-box">
+        <img src="/static/images/collage/candle_collage.jpg" alt="Candles">
+        <div class="overlay">
+          <div class="overlay-text">Candles</div>
+        </div>
+      </a>
     </div>
+    <div class="col">
+      <a href="/products/diffusers" class="collection-box">
+        <img src="/static/images/collage/diffuser_collage.jpg" alt="Reed Diffusers">
+        <div class="overlay">
+          <div class="overlay-text">Reed Diffusers</div>
+        </div>
+      </a>
+    </div>
+    <div class="col">
+      <a href="/products/soaps" class="collection-box">
+        <img src="/static/images/collage/soaps_collage.jpg" alt="Soaps">
+        <div class="overlay">
+          <div class="overlay-text">Soaps</div>
+        </div>
+      </a>
+    </div>
+  </div>
 </div>
+
 {% endblock %}
