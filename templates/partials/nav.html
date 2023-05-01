@@ -2,9 +2,7 @@
 {% block navbar %}
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
-      <a class="navbar-brand" href="/">
-        <i class="fa fa-solid fa-fire"></i> Candle co.
-      </a>
+      <a class="navbar-brand" href="/">Luminaire</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -45,6 +43,9 @@
               <a class="nav-link" href="{{url_for('auth.logout')}}">Logout</a>
             </li>
           {% else %}
+          <li class="nav-item me-3 me-lg-0">
+            <a class="nav-link" href="{{url_for('auth.signup')}}">Signup</a>
+          </li>
           <li class="nav-item me-3 me-lg-0">
             <a class="nav-link" href="{{url_for('auth.login')}}">Login</a>
           </li>
