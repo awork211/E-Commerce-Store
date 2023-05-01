@@ -37,7 +37,7 @@ class Orders(db.Model):
 class Order_Items(db.Model):
     __tablename__ = 'order_items'
     item_id = db.Column(db.Integer, db.ForeignKey('inventory.item_id'), primary_key=True)
-    order_id = db.Column(db.Integer, db.ForeignKey('orders.order_id', ondelete='CASCADE'), primary_key=True, autoincrement=True)
+    order_id = db.Column(db.Integer, db.ForeignKey('orders.order_id', ondelete='CASCADE'), primary_key=True)
     item_quantity = db.Column(db.Integer)
     item_total_price = db.Column(db.Float)
     order = relationship('Orders', back_populates="items")
@@ -45,8 +45,8 @@ class Order_Items(db.Model):
 
 class Payments(db.Model):
     __tablename__ = 'payments'
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), primary_key=True, autoincrement=True)
-    order_id = db.Column(db.Integer, db.ForeignKey('orders.order_id', ondelete='CASCADE'))
+    order_id = db.Column(db.Integer, db.ForeignKey('orders.order_id', ondelete='CASCADE'), primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     name = db.Column(db.String(50))
     email = db.Column(db.String(150))
     address_one = db.Column(db.String(100))
