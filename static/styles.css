@@ -7,15 +7,18 @@ html {
 .jumbotron {
     width: 100%;
     height: 100vh;
+    position: relative;
 }
 
 #hero {
     width: 100%;
-    height: 100vh;
+    height: 100%;
     background-color: #fff;
     background-attachment: fixed;
     background-size: cover;
     background-image: url(/static/images/jumbo_image-min.jpg);
+    background-position: center;
+    animation: fadein 2s;
     position: absolute;
     opacity: 0.7;
 }
@@ -46,12 +49,54 @@ html {
     margin-bottom: 50px;
 }
 
-.collage {
-    padding: 20px;
+/* COLLAGE */
+
+.collection-box {
+    position: relative;
+    overflow: hidden;
+    display: block;
+    margin-bottom: 60px;
 }
 
 
-/* CARD STYLES */
+
+.collection-box img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    transition: transform .2s ease-out;
+}
+
+.collection-box:hover img {
+    transform: scale(1.1);
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity .2s ease-out;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.overlay-text {
+    color: #fff;
+    font-size: 24px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.collection-box:hover .overlay {
+    opacity: 1;
+}
+
+/* PRODUCT CARDS */
 
 .card-img-top {
     width: 100% !important;
@@ -72,7 +117,7 @@ html {
 
 #img-container {
     width: 100%;
-    height: 100%;
+    height: 350px;
 }
 
 .middle {
@@ -96,9 +141,9 @@ html {
   opacity: 1;
   display: block;
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
   transition: .5s ease;
-  backface-visibility: hidden;
 }
 
 #img-container:hover #card-img {
@@ -127,6 +172,7 @@ html {
 }
 
 /* ORDER SUCCESS PAGE */
+
 #success-link {
     color: #000;
     text-decoration: none;
@@ -147,6 +193,9 @@ html {
 
 .footer {
     background-color: #F8F9FA;
+    margin-top: auto !important;
+    padding: 0 !important;
+    margin-top: 50px;
 }
 
 .footer .row {
@@ -156,7 +205,6 @@ html {
 .footer h2 {
     text-transform: uppercase;
     padding-top: 10px;
-    padding-bottom: 10px;
     letter-spacing: 2px;
     font-size: 18px;
 }
@@ -173,6 +221,11 @@ html {
     font-size:18px;
 }
 
+.footer .fa:hover, .contact li:hover {
+    cursor: pointer;
+    color:rgba(0, 0, 0, 0.4);
+}
+
 .address , .contact , .social {
     list-style: none;
     letter-spacing: 2px;
@@ -180,4 +233,36 @@ html {
 
 .footer .social li {
     float: left;
+}
+
+
+/* PRODUCT HEADER */
+
+#jumbotron-div {
+    height: 60vh;
+    height: 60vh;
+    background-size: cover;
+    background-position: center;
+    opacity: 0.8;
+    
+}
+
+#product-div {
+    position: relative; 
+    top: 50%; 
+    transform: translateY(-50%);
+}
+
+
+#product-header {
+    background-color: rgba(255, 255, 255, 0.5);
+    padding: 10px;
+    width: fit-content;
+    margin: 0 auto;
+}
+
+/* SIGNUP */
+
+.sign-up-form {
+    height: 100vh;
 }
