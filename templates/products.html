@@ -1,6 +1,12 @@
 {% extends '/partials/nav.html' %}
 {% block title %} Products {% endblock %}
 {% block content %}
+<div id="jumbotron-div" class="jumbotron" style="background-image: url('/static/images/products/{{category}}/hero_image.jpg');">
+    <div id="product-div" class="container">
+        <h1 id="product-header" class="text-center">{{ category.title() }}</h1>
+    </div>
+</div>
+  
 <div class="container">
     <div class="row">
         {% for product in products %}
@@ -15,7 +21,7 @@
                     </a>
                 </div>
                 <div id="flex-card-body" class="card-body p-0 mt-2">
-                  <h5 class="card-title text-left">{{ product.item_name }} {{ tag[product.category] }}</h5>
+                  <h5 class="card-title text-left">{{ product.item_name }} {{ tag[category] }}</h5>
                   <p class="card-text">${{ product.price }}</p>
                   <form action="{{url_for('views.add')}}" method="POST">
                     <input type="hidden" name="item_id" value="{{ product.item_id }}">
