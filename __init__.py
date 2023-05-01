@@ -1,3 +1,4 @@
+import os
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
@@ -14,7 +15,7 @@ def create_app():
     from .models import User
 
     with app.app_context():
-        app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://aaronwork:gamecube@localhost/postgres'
+        app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')
         db.init_app(app)
         db.create_all()
 
