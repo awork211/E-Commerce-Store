@@ -1,0 +1,264 @@
+html {
+    scroll-behavior: smooth;
+}
+
+/* LANDING PAGE HERO SECTION */
+
+.jumbotron {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+}
+
+#hero {
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    background-attachment: fixed;
+    background-size: cover;
+    background-image: url(/static/images/jumbo_image-min.jpg);
+    background-position: center;
+    animation: fadein 2s;
+    position: absolute;
+    opacity: 0.7;
+}
+
+.hero-text p, .hero-text h1 {
+    text-shadow: 1px 1px 1px #000 !important;
+}
+
+.hero-btn a {
+    background-color: #454545;
+    color: whitesmoke;
+    border-radius: 3%;
+}
+
+.hero-text {
+    color: #fff;
+    z-index: 1;
+}
+
+.navbar a {
+    color: black;
+}
+
+
+#collection {
+    height: 50px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+/* COLLAGE */
+
+.collection-box {
+    position: relative;
+    overflow: hidden;
+    display: block;
+    margin-bottom: 60px;
+}
+
+
+
+.collection-box img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    transition: transform .2s ease-out;
+}
+
+.collection-box:hover img {
+    transform: scale(1.1);
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity .2s ease-out;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.overlay-text {
+    color: #fff;
+    font-size: 24px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.collection-box:hover .overlay {
+    opacity: 1;
+}
+
+/* PRODUCT CARDS */
+
+.card-img-top {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+}
+
+#flex-card-body {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.margin-top-25 { 
+    margin-top: 2.5em;
+}
+
+#img-container {
+    width: 100%;
+    height: 350px;
+}
+
+.middle {
+    transition: .5s ease;
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -80%);
+    text-align: center;
+}
+
+.text {
+    background-color: #88908dc5;
+    color: white;
+    font-size: 16px;
+    padding: 16px 32px;
+}
+
+#card-img {
+  opacity: 1;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: .5s ease;
+}
+
+#img-container:hover #card-img {
+    opacity: 0.3;
+}
+  
+#img-container:hover .middle {
+    opacity: 1;
+}
+
+/* ITEM PAGE */
+
+.related-img {
+    height: 250px !important;
+}
+
+#add-btn {
+    transition: transform 250ms;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #e7e5e5 !important;
+}
+
+#add-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.4);
+}
+
+/* ORDER SUCCESS PAGE */
+
+#success-link {
+    color: #000;
+    text-decoration: none;
+}
+
+#success-link:hover {
+    color: #fff;
+    transition: 1s;
+}
+
+/* CART */
+
+#name-wrap {
+    width: 150px;
+}
+
+/* FOOTER */
+
+.footer {
+    background-color: #F8F9FA;
+    margin-top: 50px !important;
+    padding: 0 !important;
+    margin-top: 60px;
+}
+
+.footer h2 {
+    text-transform: uppercase;
+    padding-top: 10px;
+    letter-spacing: 2px;
+    font-size: 18px;
+}
+
+.footer a {
+    text-decoration: none;
+    font-size: 15px;
+}
+
+.footer .fa {
+    text-decoration: none;
+    color:#212529;
+    margin-right: 15px;
+    font-size:18px;
+}
+
+.footer .fa:hover, .contact li:hover {
+    cursor: pointer;
+    color:rgba(0, 0, 0, 0.4);
+}
+
+.address , .contact , .social {
+    list-style: none;
+    letter-spacing: 2px;
+}
+
+.footer .social li {
+    float: left;
+}
+
+
+/* PRODUCT HEADER */
+
+#jumbotron-div {
+    height: 60vh;
+    height: 60vh;
+    background-size: cover;
+    background-position: center;
+    opacity: 0.8;
+    
+}
+
+#product-div {
+    position: relative; 
+    top: 50%; 
+    transform: translateY(-50%);
+}
+
+
+#product-header {
+    background-color: rgba(255, 255, 255, 0.5);
+    padding: 10px;
+    width: fit-content;
+    margin: 0 auto;
+}
+
+/* SIGNUP */
+
+.sign-up-form {
+    height: 100vh;
+}
