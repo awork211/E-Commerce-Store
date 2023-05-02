@@ -1,0 +1,53 @@
+{% extends '/partials/nav.html' %}
+{% block title %}Sign Up{% endblock %}
+{% block content %}
+<div class="row justify-content-center sign-up-form">
+    <form action="{{url_for('auth.signup')}}" method="POST" class="needs-validation w-25" novalidate>
+        <h3 align="center">Sign Up</h3>
+        <div class="form-group">
+            <label class="pt-2" for="email">Email Address</label>
+            <input
+            id="email"
+            type="email"
+            name="email"
+            class="form-control" 
+            placeholder="Enter email"
+            required
+            />
+            <div class="invalid-feedback">
+                Please enter a valid email.
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="pt-2" for="email">First Name</label>
+            <input
+            id="firstName"
+            type="text" 
+            name="firstName"
+            class="form-control" 
+            placeholder="Enter first name"
+            required
+            />
+            <div id="invalid-feedback" class="invalid-feedback">
+                Please enter first name.
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="pt-2" for="pass">Password</label>
+            <input
+            id="pass"
+            type="password" 
+            name="password"
+            class="form-control" 
+            placeholder="Enter password"
+            required
+            />
+            <div id="invalid-confirm" class="invalid-feedback">
+                Please enter password.
+            </div>
+        </div>
+        <br />
+        <button type="Submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+{% endblock %}
