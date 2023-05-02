@@ -2,6 +2,7 @@ import os
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
+from populate_inventory import check_and_populate_inventory
 
 db = SQLAlchemy()
 
@@ -18,6 +19,7 @@ def create_app():
         app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')
         db.init_app(app)
         db.create_all()
+        check_and_populate_inventory()
 
     login_manager = LoginManager()
     login_manager.init_app(app)
